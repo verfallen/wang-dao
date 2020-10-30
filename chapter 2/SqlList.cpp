@@ -65,12 +65,13 @@ bool ListDelete(SqlList &L, int i, ElementType &e)
   L.length--;
   return true;
 }
-
+// 返回表的长度
 int Length(SqlList &l)
 {
   return l.length;
 }
 
+//打印表元素
 void PrintList(SqlList &L)
 {
   int length = Length(L);
@@ -80,6 +81,7 @@ void PrintList(SqlList &L)
   }
 }
 
+//判空
 bool Empty(SqlList &L)
 {
   return Length(L) == 0;
@@ -90,8 +92,26 @@ void DestoryList(SqlList &L)
   free(L.data);
 }
 
-int main()
+// 习题2.1 删除最小值的元素并返回该元素，空出的位置由最后一个元素填补
+bool DelMin(SqlList &L, ElementType &value)
 {
+  if (Empty(L))
+    return false;
+  value = L.data[0];
+
+  int pos;
+  for (int i = 1; i < L.length; i++)
+  {
+    if (value > L.data[i])
+    {
+      value = L.data[i];
+      pos = i;
+    }
+  }
+  L.data[pos] = L.data[L.length - 1];
+  L.length--;
+  return true;
+}
   SqlList L;
   InitSqlList(L);
 
