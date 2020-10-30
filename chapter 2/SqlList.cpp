@@ -77,8 +77,9 @@ void PrintList(SqlList &L)
   int length = Length(L);
   for (int i = 0; i < length; i++)
   {
-    printf("[%d]:%d\n", i, L.data[i]);
+    printf("%d,", L.data[i]);
   }
+  printf("\n");
 }
 
 //判空
@@ -112,24 +113,52 @@ bool DelMin(SqlList &L, ElementType &value)
   L.length--;
   return true;
 }
-  SqlList L;
+
+//习题2.2 第二小题：元素逆置
+void Reverse(SqlList &L)
+{
+  ElementType tmp;
+  int len = L.length;
+  for (int i = 0; i < len / 2; i++)
+  {
+    tmp = L.data[i];
+    L.data[i] = L.data[len - 1 - i];
+    L.data[len - 1 - i] = tmp;
+  }
+}
+
+void testDelMin(SqlList &L)
+{
+
+  ElementType min;
+  PrintList(L);
+  DelMin(L, min);
+  printf("min element is %d\n", min);
+  PrintList(L);
+}
+
+void testReverse(SqlList &L)
+{
+  PrintList(L);
+  Reverse(L);
+  printf("After Reverse:\n");
+  PrintList(L);
+}
+
+int main()
+{
+
+  SqlList L; //L.data ={10,20,3,-5,2,1}
   InitSqlList(L);
-
-  ListInsert(L, 1, 1);
-  ListInsert(L, 2, 2);
+  ListInsert(L, 1, 10);
+  ListInsert(L, 2, 20);
   ListInsert(L, 3, 3);
-  ListInsert(L, 4, 5);
+  ListInsert(L, 4, -5);
   ListInsert(L, 5, 2);
-  PrintList(L);
+  ListInsert(L, 5, 1);
+  // testDelMin();
 
-  ElementType delElem;
-  ListDelete(L, 2, delElem);
-  printf("The second element is:%d\n", delElem);
-  printf("After delete the second:\n");
-  PrintList(L);
-
-  printf("%d\n", LocateElem(L, 5));
-  printf("L is empty?%d", Empty(L));
+  testReverse(L);
 
   return 0;
 }
