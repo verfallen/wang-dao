@@ -29,8 +29,8 @@ bool ListInsert(SqlList &list, int i, ElementType e)
     return false;
   if (list.length >= list.MaxSize)
     return false;
-  for (int j = i; j < list.length; j++)
-    list.data[j] = list.data[j + 1];
+  for (int j = list.length; j >= i; j--)
+    list.data[j] = list.data[j - 1];
   list.data[i - 1] = e;
   list.length++;
   return true;
