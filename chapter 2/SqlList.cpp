@@ -127,6 +127,21 @@ void Reverse(SqlList &L)
   }
 }
 
+// 3. 删除所有值为x的元素
+void DelX(SqlList &list, ElementType x)
+{
+  int num = 0;
+  for (int i = 0; i < list.length; i++)
+  {
+    if (list.data[i] == x)
+      num++;
+    else
+      list.data[i - num] = list.data[i];
+  }
+
+  list.length = list.length - num;
+}
+
 void testDelMin(SqlList &L)
 {
 
@@ -145,6 +160,14 @@ void testReverse(SqlList &L)
   PrintList(L);
 }
 
+void testDelX(SqlList &L)
+{
+  PrintList(L);
+  DelX(L, 2);
+  printf("After delete 2:\n");
+  PrintList(L);
+}
+
 int main()
 {
 
@@ -156,9 +179,11 @@ int main()
   ListInsert(L, 4, -5);
   ListInsert(L, 5, 2);
   ListInsert(L, 5, 1);
+  ListInsert(L, 5, 2);
   // testDelMin();
 
-  testReverse(L);
+  // testReverse(L);
+  testDelX(L);
 
   return 0;
 }
