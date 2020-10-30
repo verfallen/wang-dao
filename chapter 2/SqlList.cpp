@@ -142,6 +142,25 @@ void DelX(SqlList &list, ElementType x)
   list.length = list.length - num;
 }
 
+//4. 删除值在 s~t 之间的元素
+bool delRange(SqlList &L, ElementType s, ElementType t)
+{
+  int k = 0;
+  if (s > t || s == t)
+    return false;
+
+  for (int i = 0; i < L.length; i++)
+  {
+    if (L.data[i] > s && L.data[i] < t)
+      k++;
+    else
+      L.data[i - k] = L.data[k];
+  }
+
+  L.length = L.length - k;
+  return true;
+}
+
 void testDelMin(SqlList &L)
 {
 
@@ -168,6 +187,14 @@ void testDelX(SqlList &L)
   PrintList(L);
 }
 
+void testDelRange(SqlList &L)
+{
+  PrintList(L);
+  delRange(L, 0, 100);
+  printf("After delete from 0 to 100:\n");
+  PrintList(L);
+}
+
 int main()
 {
 
@@ -183,7 +210,8 @@ int main()
   // testDelMin();
 
   // testReverse(L);
-  testDelX(L);
+  // testDelX(L);
+  testDelRange(L);
 
   return 0;
 }
