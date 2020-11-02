@@ -142,7 +142,7 @@ void DelX(SqlList &list, ElementType x)
   list.length = list.length - num;
 }
 
-//4. 删除值在 s~t 之间的元素
+//5. 删除值在 s~t 之间的元素
 bool delRange(SqlList &L, ElementType s, ElementType t)
 {
   int k = 0;
@@ -158,6 +158,30 @@ bool delRange(SqlList &L, ElementType s, ElementType t)
   }
 
   L.length = L.length - k;
+  return true;
+}
+
+//4.1 在有序顺序表中删除s~t之间的元素
+bool Del_2(SqlList &L, ElementType s, ElementType t)
+{
+  if (s >= t || L.length == 0)
+    return false;
+
+  int i = 0; //记录第一个大于s的元素
+  int j;     //记录第一个大于t的元素
+
+  while (i < L.length && L.data[i] < s)
+    i++;
+
+  j = i;
+
+  while (j < L.length && L.data[j] <= t)
+    j++;
+
+  for (; j < L.length; i++, j++)
+    L.data[i] = L.data[j];
+
+  L.length = i;
   return true;
 }
 
@@ -194,6 +218,23 @@ void testDelRange(SqlList &L)
   printf("After delete from 0 to 100:\n");
   PrintList(L);
 }
+//测试在有序顺序表中总删除s-t 之间的元素
+void testDelRange2()
+{
+  SqlList L; //L.data ={10,20,3,-5,2,1}
+  InitSqlList(L);
+  ListInsert(L, 1, 0);
+  ListInsert(L, 2, 2);
+  ListInsert(L, 3, 3);
+  ListInsert(L, 4, 5);
+  ListInsert(L, 5, 7);
+  ListInsert(L, 6, 8);
+  ListInsert(L, 7, 10);
+  PrintList(L);
+
+  Del_2(L, 2, 5);
+  PrintList(L);
+}
 
 int main()
 {
@@ -211,7 +252,8 @@ int main()
 
   // testReverse(L);
   // testDelX(L);
-  testDelRange(L);
+  // testDelRange(L);
+  testDelRange2();
 
   return 0;
 }
