@@ -32,21 +32,16 @@ void testMergeList(SqlList &L)
 
 int main()
 {
-  SqlList L; //L.data ={10,20,3,-5,2,1}
+  SqlList L, Q, P; //L.data ={10,20,3,-5,2,1}
   InitSqlList(L);
+  InitSqlList(Q);
   ListInsert(L, 1, 0);
+  ListInsert(Q, 1, 1);
   ListInsert(L, 2, 2);
-  ListInsert(L, 2, 2);
-  ListInsert(L, 2, 2);
-  ListInsert(L, 5, 3);
-  ListInsert(L, 6, 5);
-  ListInsert(L, 7, 5);
-  ListInsert(L, 8, 7);
-  ListInsert(L, 9, 8);
-  ListInsert(L, 10, 10);
-  PrintList(L);
-
-  testDelDuplicate(L);
+  ListInsert(Q, 2, 3);
+  ListInsert(L, 3, 4);
+  MergeList(L, Q, P);
+  PrintList(P);
 
   return 0;
 }
