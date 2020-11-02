@@ -146,7 +146,7 @@ void DelX(SqlList &list, ElementType x)
 bool delRange(SqlList &L, ElementType s, ElementType t)
 {
   int k = 0;
-  if (s > t || s == t)
+  if (s >= t || L.length == 0)
     return false;
 
   for (int i = 0; i < L.length; i++)
