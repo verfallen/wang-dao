@@ -99,6 +99,19 @@ bool ListInsert(LinkList &L, int i, ElemType e)
   return true;
 }
 
+//删除第i个节点
+bool ListDelete(LinkList &L, int i)
+{
+  if (i < 1)
+    return false;
+  LNode *p = GetElem(L, i - 1);
+  LNode *q = p->next;
+  p->next = q->next;
+  free(q);
+
+  return true;
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
