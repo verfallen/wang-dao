@@ -18,7 +18,7 @@ LinkList List_HeadInsert(LinkList &L)
 
   L = (LinkList)malloc(sizeof(LNode));
   L->next = NULL;
-  printf("please enter num\n");
+  printf("please enter num:\n");
   scanf("%d", &x);
 
   while (x != 9999)
