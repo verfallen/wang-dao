@@ -18,6 +18,7 @@ LinkList List_HeadInsert(LinkList &L)
 
   L = (LinkList)malloc(sizeof(LNode));
   L->next = NULL;
+  printf("please enter num\n");
   scanf("%d", &x);
 
   while (x != 9999)
@@ -112,6 +113,20 @@ bool ListDelete(LinkList &L, int i)
   return true;
 }
 
+// 求表长
+int Length(LinkList L)
+{
+  int len = 0;
+  LNode *p = L;
+  while (p->next != NULL)
+  {
+    len++;
+    p = p->next;
+  }
+
+  return len;
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
@@ -120,5 +135,8 @@ int main(int argc, const char **argv)
 
   // LNode *p = GetElem(L, 2);
   // printf("%d:", p->data);
+
+  int len = Length(L);
+  printf("length is %d", len);
   return 0;
 }
