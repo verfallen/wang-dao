@@ -84,6 +84,21 @@ LNode *LocateElem(LinkList L, ElemType e)
   return p;
 }
 
+//在第i个位置上插入结点
+bool ListInsert(LinkList &L, int i, ElemType e)
+{
+  if (i < 1)
+    return false;
+
+  LNode *p = GetElem(L, i - 1);
+  LNode *s;
+  s->data = e;
+  s->next = p->next;
+  p->next = s;
+
+  return true;
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
