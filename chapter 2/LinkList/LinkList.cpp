@@ -55,6 +55,7 @@ LinkList List_TailInsert(LinkList &L)
   return L;
 }
 
+//根据序号（第i个位置）查找结点
 LNode *GetElem(LinkList L, int i)
 {
   int j = 1;
@@ -70,6 +71,16 @@ LNode *GetElem(LinkList L, int i)
     j++;
   }
 
+  return p;
+}
+
+//根据值查找结点
+LNode *LocateElem(LinkList L, ElemType e)
+{
+  LNode *p = L->next;
+
+  while (p != NULL && p->data != e)
+    p = p->next;
   return p;
 }
 
