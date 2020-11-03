@@ -27,6 +27,20 @@ bool Empty(DLinkList L)
   return false;
 }
 
+DNode *GetElem(DLinkList L, int i)
+{
+  if (i < 0)
+    return NULL;
+  int j = 0;
+  DNode *p;
+  while (p != NULL && j < i)
+  {
+    p = p->next;
+    j++;
+  }
+  return p;
+}
+
 int main(int argc, char const *argv[])
 {
 
