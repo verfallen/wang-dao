@@ -55,10 +55,31 @@ LinkList List_TailInsert(LinkList &L)
   return L;
 }
 
+LNode *GetElem(LinkList L, int i)
+{
+  int j = 1;
+  LNode *p = L->next;
+
+  if (i == 0)
+    return L;
+  if (i < 1)
+    return NULL;
+  while (p && j < i)
+  {
+    p = p->next;
+    j++;
+  }
+
+  return p;
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
-  // List_HeadInsert(L);
-  List_TailInsert(L);
+  List_HeadInsert(L);
+  // List_TailInsert(L);
+
+  // LNode *p = GetElem(L, 2);
+  // printf("%d:", p->data);
   return 0;
 }
