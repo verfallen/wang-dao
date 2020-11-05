@@ -7,6 +7,10 @@ typedef struct LNode
   struct LNode *next;
 } LNode, *LinkList;
 
+bool InitList(LinkList &L);
+LinkList List_HeadInsert(LinkList &L);
+void PrintList(LinkList L);
+
 bool InitList(LinkList &L)
 {
   L = NULL;
@@ -20,14 +24,23 @@ LinkList List_HeadInsert(LinkList &L)
   int x;
   printf("please ent num:\n");
   scanf("%d", &x);
+  bool isHead = true;
 
   while (x != 9999)
   {
     s = (LNode *)(malloc(sizeof(LNode)));
+    if (!s)
+    {
+      exit(EXIT_FAILURE);
+    }
     s->data = x;
-    s->next = L->next;
-    L->next = s;
-    scanf("%d", x);
+
+    s->next = L;
+    L = s;
+    isHead = false;
+    PrintList(L);
+
+    scanf("%d", &x);
   }
   return L;
 }
@@ -195,10 +208,14 @@ void PrintList(LinkList L)
   printf("\n");
 }
 
-int main(int argc, char const *argv[])
+void testInsertHead(LinkList &L)
 {
-  LinkList L;
-  InitList(L);
+  List_HeadInsert(L);
+  PrintList(L);
+}
+
+void testInsertAndDelte(LinkList &L)
+{
   printf("length is %d\n", Length(L));
 
   ListInsert(L, 1, 1);
@@ -212,6 +229,13 @@ int main(int argc, char const *argv[])
 
   DeleteNode(L, 3);
   PrintList(L);
+}
+int main(int argc, char const *argv[])
+{
+  LinkList L;
+  InitList(L);
+
+  testInsertHead(L);
 
   return 0;
 }
