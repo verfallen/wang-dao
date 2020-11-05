@@ -47,17 +47,30 @@ LinkList List_HeadInsert(LinkList &L)
 //尾插法，需要增加一个尾指针指向
 LinkList List_TailInsert(LinkList &L)
 {
-  LNode *s, *r;
+  LNode *s, *r = L;
   int x;
+  bool isHead = true;
+
   printf("Enter num:");
-  scanf("%d", x);
+  scanf("%d", &x);
 
   while (x != 9999)
   {
     s = (LNode *)malloc(sizeof(LNode));
     s->data = x;
-    r->next = s;
-    r = s;
+
+    if (isHead)
+    {
+      isHead = false;
+      L = s;
+      r = s;
+    }
+    else
+    {
+      r->next = s;
+      r = s;
+    }
+
     scanf("%d", &x);
   }
 
@@ -214,6 +227,12 @@ void testInsertHead(LinkList &L)
   PrintList(L);
 }
 
+void testTailInsert(LinkList &L)
+{
+  List_TailInsert(L);
+  PrintList(L);
+}
+
 void testInsertAndDelte(LinkList &L)
 {
   printf("length is %d\n", Length(L));
@@ -235,7 +254,8 @@ int main(int argc, char const *argv[])
   LinkList L;
   InitList(L);
 
-  testInsertHead(L);
+  // testInsertHead(L);
+  testTailInsert(L);
 
   return 0;
 }
