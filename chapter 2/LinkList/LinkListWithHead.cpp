@@ -214,7 +214,6 @@ void testTailInsert()
   List_TailInsert(L);
   PrintList(L);
 }
-//TODO: 插入列表不对
 void testListInsert(LinkList &L)
 {
 
