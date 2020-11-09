@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <iostream>
+
+using namespace std;
 
 typedef struct LNode
 {
@@ -34,15 +37,13 @@ LinkList List_HeadInsert(LinkList &L)
   L = (LinkList)malloc(sizeof(LNode));
   L->next = NULL;
   printf("please ent num:\n");
-  scanf("%d", &x);
 
-  while (x != 9999)
+  while (cin >> x)
   {
     s = (LNode *)(malloc(sizeof(LNode)));
     s->data = x;
     s->next = L->next;
     L->next = s;
-    scanf("%d", &x);
   }
   return L;
 }
@@ -254,6 +255,19 @@ void Delete_X_1(LinkList &L, int x)
   }
 }
 
+//反向单链表,利用递归来实现
+//TODO: 为什么多输出了一个零？是因为头结点吗
+void ReversePrint(LinkList L)
+{
+
+  if (L->next != NULL)
+    ReversePrint(L->next);
+  if (L != NULL)
+  {
+    printf("%d,", L->data);
+  }
+}
+
 int main(int argc, char const *argv[])
 {
   // testHeadInsert();
@@ -264,8 +278,9 @@ int main(int argc, char const *argv[])
   List_HeadInsert(L);
   PrintList(L);
 
-  Delete_X_1(L, 1);
-  PrintList(L);
+  ReversePrint(L);
+  // Delete_X_1(L, 1);
+  // PrintList(L);
   // testListInsert(L);
 
   return 0;
