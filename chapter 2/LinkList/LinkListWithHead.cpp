@@ -230,6 +230,30 @@ void testListInsert(LinkList &L)
   PrintList(L);
 }
 
+//删除所有值为x的结点
+void Delete_X_1(LinkList &L, int x)
+{
+  LNode *p = L->next;
+  LNode *pre = L;
+  LNode *q;
+
+  while (p)
+  {
+    if (p->data == x)
+    {
+      q = p;
+      p = p->next;
+      pre->next = p;
+      free(q);
+    }
+    else
+    {
+      p = p->next;
+      pre = pre->next;
+    }
+  }
+}
+
 int main(int argc, char const *argv[])
 {
   // testHeadInsert();
@@ -237,7 +261,12 @@ int main(int argc, char const *argv[])
 
   LinkList L;
   InitList(L);
-  testListInsert(L);
+  List_HeadInsert(L);
+  PrintList(L);
+
+  Delete_X_1(L, 1);
+  PrintList(L);
+  // testListInsert(L);
 
   return 0;
 }
