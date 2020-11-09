@@ -177,8 +177,10 @@ bool DListInsert(DLinkList &L, int i, int e)
 
 bool DeleteNode(DNode *p)
 {
-  p->next = p->prior;
   p->prior->next = p->next;
+
+  if (p->next != NULL)
+    p->next->prior = p->prior;
   free(p);
 }
 
@@ -186,17 +188,18 @@ void testHeadInsert()
 {
   DLinkList L;
   InitList(L);
-  List_HeadInsert(L);
+  // List_HeadInsert(L);
   // List_TailInsert(L);
-  PrintList(L);
+  // PrintList(L);
 
-  DNode *p = LocateElem(L, 2);
-  InsertPriorNode(p, 1111);
-  DListInsert(L, 1, 2222);
+  // DNode *p = LocateElem(L, 2);
+  // InsertPriorNode(p, 1111);
+  DListInsert(L, 1, 1);
+  DListInsert(L, 1, 2);
+  DListInsert(L, 1, 3);
   PrintList(L);
   std::cout << "delete first element" << std::endl;
-  DNode *q = GetElem(L, 1);
-  //TODO: 删除节点未实现
+  DNode *q = GetElem(L, 2);
   DeleteNode(q);
   std::cout << "after delete" << std::endl;
   PrintList(L);
