@@ -268,6 +268,29 @@ void ReversePrint(LinkList L)
   }
 }
 
+//删除最小值结点
+LinkList DeleteMin(LinkList &L)
+{
+  LNode *pre = L->next;
+  LNode *p = pre->next;
+  LNode *minp = pre, *minpre;
+
+  while (p != NULL)
+  {
+    if (p->data < minp->data)
+    {
+      minp = p;
+      minpre = pre;
+    }
+    pre = p;
+    p = p->next;
+  }
+
+  minpre->next = minp->next;
+  free(minp);
+  return L;
+}
+
 int main(int argc, char const *argv[])
 {
   // testHeadInsert();
@@ -278,9 +301,9 @@ int main(int argc, char const *argv[])
   List_HeadInsert(L);
   PrintList(L);
 
-  ReversePrint(L);
+  DeleteMin(L);
   // Delete_X_1(L, 1);
-  // PrintList(L);
+  PrintList(L);
   // testListInsert(L);
 
   return 0;
