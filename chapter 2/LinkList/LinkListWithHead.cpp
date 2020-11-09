@@ -17,7 +17,7 @@ void PrintList(LinkList L);
 bool InsertNextNode(LNode *p, int e);
 bool InsertPriorNode(LNode *p, int e);
 
-//å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨åˆå§‹åŒ–
+//´øÍ·½áµãµÄµ¥Á´±í³õÊ¼»¯
 bool InitList(LinkList &L)
 {
   L = (LNode *)malloc(sizeof(LNode));
@@ -25,7 +25,7 @@ bool InitList(LinkList &L)
   return true;
 }
 
-//å¤´æ’æ³•ï¼Œå¸¦å¤´ç»“ç‚¹
+//Í·²å·¨£¬´øÍ·½áµã
 LinkList List_HeadInsert(LinkList &L)
 {
   LNode *s;
@@ -47,7 +47,7 @@ LinkList List_HeadInsert(LinkList &L)
   return L;
 }
 
-//å°¾æ’æ³•ï¼Œå¸¦å¤´ç»“ç‚¹
+//Î²²å·¨£¬´øÍ·½áµã
 LinkList List_TailInsert(LinkList &L)
 {
   LNode *s, *r = L;
@@ -70,7 +70,7 @@ LinkList List_TailInsert(LinkList &L)
 // {
 //   if (i < 0)
 //     return NULL;
-//   int j = 0; //jä»0å¼€å§‹ï¼Œè¿™æ˜¯ä¸ä¸å¸¦å¤´ç»“ç‚¹çš„é“¾è¡¨çš„åŒºåˆ«
+//   int j = 0; //j´Ó0¿ªÊ¼£¬ÕâÊÇÓë²»´øÍ·½áµãµÄÁ´±íµÄÇø±ğ
 //   LNode *p = L;
 //   while (p && j < i)
 //   {
@@ -97,7 +97,7 @@ LNode *GetElem(LinkList L, int i)
 
 LNode *LocateElem(LinkList L, int e)
 {
-  //åŒºåˆ«ï¼šç¬¬ä¸€ä¸ªèŠ‚ç‚¹ä¸ºå¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
+  //Çø±ğ£ºµÚÒ»¸ö½ÚµãÎªÍ·½áµãµÄÏÂÒ»¸ö½Úµã
   LNode *p = L->next;
 
   while (p && p->data != e)
@@ -132,7 +132,7 @@ void PrintList(LinkList L)
   printf("\n");
 }
 
-//åæ’æ“ä½œï¼šåœ¨pèŠ‚ç‚¹ä¹‹åæ’å…¥å…ƒç´ e
+//ºó²å²Ù×÷£ºÔÚp½ÚµãÖ®ºó²åÈëÔªËØe
 bool InsertNextNode(LNode *p, int e)
 {
   if (!p)
@@ -146,7 +146,7 @@ bool InsertNextNode(LNode *p, int e)
   return true;
 }
 
-//å‰æ’æ“ä½œï¼šåœ¨pç»“ç‚¹ä¹‹å‰æ’å…¥å…ƒç´ e
+//Ç°²å²Ù×÷£ºÔÚp½áµãÖ®Ç°²åÈëÔªËØe
 bool InsertPriorNode(LNode *p, int e)
 {
   if (!p)
@@ -162,7 +162,7 @@ bool InsertPriorNode(LNode *p, int e)
   return true;
 }
 
-//å°†eæ’å…¥åˆ°ç¬¬iä¸ªä½ç½®ä¸Šï¼Œ(ä¸å¤´ç»“ç‚¹çš„é“¾è¡¨)
+//½«e²åÈëµ½µÚi¸öÎ»ÖÃÉÏ£¬(²»Í·½áµãµÄÁ´±í)
 bool ListInsert(LinkList &L, int i, int e)
 {
   if (i < 1)
@@ -176,7 +176,7 @@ bool ListInsert(LinkList &L, int i, int e)
   return InsertNextNode(p, e);
 }
 
-//åˆ é™¤èŠ‚ç‚¹
+//É¾³ı½Úµã
 bool DeleteNode(LNode *p)
 {
   if (!p)
@@ -188,7 +188,7 @@ bool DeleteNode(LNode *p)
   return false;
 }
 
-//åˆ é™¤é“¾è¡¨ç¬¬iä¸ªèŠ‚ç‚¹
+//É¾³ıÁ´±íµÚi¸ö½Úµã
 bool ListDelete(LinkList &L, int i, int &e)
 {
   if (i < 1)
