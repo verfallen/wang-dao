@@ -291,6 +291,43 @@ LinkList DeleteMin(LinkList &L)
   return L;
 }
 
+// 原地算法：将单链表逆置
+LinkList Reverse_1(LinkList L)
+{
+  LNode *p, *r;
+  p = L->next;
+  L->next = NULL;
+
+  while (p != NULL)
+  {
+    r = p->next;
+    p->next = L->next;
+    L->next = p;
+    p = r;
+  }
+
+  return L;
+}
+
+LinkList Reverse_2(LinkList L)
+{
+  LNode *pre;
+  LNode *p = L->next;
+  LNode *r = p->next;
+  p->next = NULL;
+
+  while (r != NULL)
+  {
+    pre = p;
+    p = r;
+    r = r->next;
+    p->next = pre;
+  }
+
+  L->next = p;
+  return L;
+}
+
 int main(int argc, char const *argv[])
 {
   // testHeadInsert();
@@ -301,9 +338,11 @@ int main(int argc, char const *argv[])
   List_HeadInsert(L);
   PrintList(L);
 
-  DeleteMin(L);
+  // DeleteMin(L);
   // Delete_X_1(L, 1);
-  PrintList(L);
+  LinkList L1;
+  L1 = Reverse_2(L);
+  PrintList(L1);
   // testListInsert(L);
 
   return 0;
