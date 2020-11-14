@@ -48,6 +48,12 @@ bool ListDelete(SqList &L, int i, int &e)
   return true;
 }
 
+//按位查找
+int GetElem(SqList L, int i)
+{
+  return L.data[i - 1];
+}
+
 int main(int argc, char const *argv[])
 {
   SqList L;
