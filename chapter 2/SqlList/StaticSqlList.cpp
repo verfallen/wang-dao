@@ -30,9 +30,21 @@ bool ListInsert(SqList &L, int i, int e)
   if (L.length >= MaxSize)
     return false;
   for (int j = L.length - 1; j >= i; j)
-    L.data[j] = L.data[j - 1];
+    L.data[j] = L.data[j - 1]; //元素后移
   L.data[i - 1] = e;
   L.length++;
+  return true;
+}
+
+//删除第i个位置的元素
+bool ListDelete(SqList &L, int i, int &e)
+{
+  if (i < 1 || i > L.length + 1)
+    return false;
+  e = L.data[i - 1];
+  for (int j = i; j < L.length; j++)
+    L.data[j - 1] = L.data[j]; //元素前移
+  L.length--;
   return true;
 }
 
