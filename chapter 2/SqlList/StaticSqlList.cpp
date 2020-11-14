@@ -54,6 +54,17 @@ int GetElem(SqList L, int i)
   return L.data[i - 1];
 }
 
+//按值查找
+int LocateElem(SqList L, int e)
+{
+  for (int i = 0; i < L.length; i++)
+  {
+    if (L.data[i] == e)
+      return i + 1;
+    return 0;
+  }
+}
+
 int main(int argc, char const *argv[])
 {
   SqList L;

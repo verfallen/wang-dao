@@ -53,9 +53,9 @@ int LocateElem(SqlList &L, ElementType e)
 {
   for (int i = 0; i < L.length; i++)
     if (L.data[i] == e)
-      return i;
+      return i + 1;
 
-  return -1;
+  return 0;
 }
 
 ElementType GetElem(SqlList &list, int i)
