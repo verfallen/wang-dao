@@ -22,6 +22,20 @@ void PrintList(SqList L)
     printf("\n");
 }
 
+//插入到位序i
+bool ListInsert(SqList &L, int i, int e)
+{
+    if (i < 1 || i > L.length + 1)
+        return false;
+    if (L.length >= MaxSize)
+        return false;
+    for (int j = L.length - 1; j >= i; j)
+        L.data[j] = L.data[j - 1];
+    L.data[i - 1] = e;
+    L.length++;
+    return true;
+}
+
 int main(int argc, char const *argv[])
 {
     SqList L;
