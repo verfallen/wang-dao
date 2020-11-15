@@ -28,6 +28,12 @@ bool InitList(LinkList &L)
   return true;
 }
 
+//判断单链表是否为空（带头结点）
+bool Empty(LinkList L)
+{
+  return L->next == NULL;
+}
+
 //头插法，带头结点
 LinkList List_HeadInsert(LinkList &L)
 {

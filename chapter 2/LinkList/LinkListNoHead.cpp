@@ -17,6 +17,12 @@ bool InitList(LinkList &L)
   return true;
 }
 
+//判断单链表是否为空（不带头结点）
+bool Empty(LinkList L)
+{
+  return L == NULL;
+}
+
 //头插法，不带头结点
 LinkList List_HeadInsert(LinkList &L)
 {
