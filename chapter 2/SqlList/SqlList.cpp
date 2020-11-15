@@ -235,6 +235,8 @@ bool DelSame(SqlList &L)
   return true;
 }
 
+//7 合并有序顺序表
+
 void testDelMin(SqlList &L)
 {
 
