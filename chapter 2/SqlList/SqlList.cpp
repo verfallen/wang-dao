@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define InitSize 100
 
@@ -322,7 +323,23 @@ void Converse(int R[], int n, int p)
   Reverse(R, 0, n - 1);
 }
 
+//12: 找出未出现的最小正整数
+int findMissMin(int A[], int n)
+{
+  int i, *B;
+  B = (int *)malloc(sizeof(int) * n);
+  memset(B, 0, sizeof(int) * n);
 
+  for (i = 0; i < n; i++)
+    if (A[i] > 0 && A[i] <= n)
+      B[A[i] - 1] = 1;
+
+  for (i = 0; i < n; i++)
+    if (B[i] == 0)
+      break;
+
+  return i + 1;
+}
 
 void testDelMin(SqlList &L)
 {
