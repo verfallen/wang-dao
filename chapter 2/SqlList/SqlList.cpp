@@ -218,6 +218,23 @@ bool DelRange3(SqlList &L, ElementType s, ElementType t)
   return true;
 }
 
+//6 从有序顺序表中删除值重复的元素
+bool DelSame(SqlList &L)
+{
+  int i; //i 表示存储的不相同元素的下标
+  int j; //j 访问的当前元素
+
+  if (L.length == 0)
+    return false;
+
+  for (i = 0, j = 1; j < L.length; j++)
+    if (L.data[i] != L.data[j])
+      L.data[++i] = L.data[j];
+
+  L.length = i + 1;
+  return true;
+}
+
 void testDelMin(SqlList &L)
 {
 
