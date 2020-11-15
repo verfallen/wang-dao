@@ -143,7 +143,7 @@ void Reverse(SqlList &L)
 // 3. 删除所有值为x的元素
 void DelX(SqlList &list, ElementType x)
 {
-  int num = 0;
+  int num = 0; //记录等于 x的元素个数
   for (int i = 0; i < list.length; i++)
   {
     if (list.data[i] == x)
@@ -195,6 +195,26 @@ bool Del_2(SqlList &L, ElementType s, ElementType t)
     L.data[i] = L.data[j];
 
   L.length = i;
+  return true;
+}
+
+//4.2 在有序顺序表中删除s~t之间的元素
+bool DelRange3(SqlList &L, ElementType s, ElementType t)
+{
+  int i, j;
+  if (s >= t || L.length == 0)
+    return false;
+
+  for (i = 0; i < L.length && L.data[i] < s; i++)
+    ;
+  if (i > L.length)
+    return false;
+
+  for (j = i; j < L.length && L.data[j] <= t; j++)
+    ;
+  for (; j < L.length; i++, j++)
+    L.data[i] = L.data[j];
+  L.length = i + 1;
   return true;
 }
 
