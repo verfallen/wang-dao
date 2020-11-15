@@ -172,18 +172,18 @@ bool ListInsert(LinkList &L, int i, int e)
 {
   if (i < 1)
     return false;
-  if (i == 1)
+  if (i == 1) //不带头结点的链表，插入到位置1是需要单独处理
   {
     LNode *s = (LNode *)malloc(sizeof(LNode));
     s->data = e;
-    s->next = L;
-    L = s;
+    s->next = L; //将新结点的指针指向第一个节点
+    L = s;       //头指针指向新结点
     return true;
   }
 
   LNode *p;
   p = L;
-  int j = 1;
+  int j = 1; //表示p当前指向的结点
   while (p && j < i - 1)
   {
     p = p->next;
