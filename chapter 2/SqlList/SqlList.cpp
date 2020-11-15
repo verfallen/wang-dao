@@ -263,6 +263,44 @@ void Exchange(DataType A[], int m, int n, int arraySize)
   Reverse(A, n, m + n - 1, arraySize);
 }
 
+// 9. 在递增的有序表中查找元素x,若找到则将其与其后继元素交换，若找不到则将其插入表中使其仍为有序表
+int BinarySearch(ElementType A[], int n, ElementType x)
+{
+  int low = 0, high = n - 1, mid;
+
+  while (low <= high)
+  {
+    mid = (low + high) / 2;
+    if (A[mid] == x)
+      return mid;
+    else if (A[mid] < x)
+      low = mid + 1;
+    else
+      high = mid - 1;
+  }
+
+  return -1;
+}
+
+void SearxhExchangeInsert(ElementType A[], int n, ElementType x)
+{
+  int mid, tmp, i;
+  mid = BinarySearch(A, n, x);
+
+  if (mid != -1 && mid != n - 1)
+  {
+    A[mid] = A[mid + 1];
+    A[mid + 1] = x;
+  }
+
+  if (mid == -1)
+  {
+    for (i = n - 1; A[i] > x; i--)
+      A[i + 1] = A[i];
+    A[i + 1] = x;
+  }
+}
+
 void testDelMin(SqlList &L)
 {
 
