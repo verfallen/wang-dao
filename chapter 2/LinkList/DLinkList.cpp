@@ -173,6 +173,18 @@ bool DeleteNextDNode(DNode *p)
   return true;
 }
 
+//销毁双链表
+void DestoryList(DLinkList &L)
+{
+  while (L->next != NULL)
+  {
+    DeleteNextDNode(L);
+  }
+
+  free(L);
+  L = NULL;
+}
+
 bool InsertPriorNode(DNode *p, int e)
 {
   if (!p)
