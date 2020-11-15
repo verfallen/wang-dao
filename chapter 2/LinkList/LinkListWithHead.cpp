@@ -183,6 +183,31 @@ bool ListInsert(LinkList &L, int i, int e)
   return InsertNextNode(p, e);
 }
 
+//在第i个位置插入元素e(带头结点)
+bool ListInsertElement(LinkList &L, int i, int e)
+{
+  if (i < 1)
+    return false;
+
+  LNode *p = L;
+  int j = 0; //表示当前p指向的节点
+
+  while (p != NULL && j < i - 1)
+  {
+    p = p->next;
+    j++;
+  }
+
+  if (p == NULL)
+    return false;
+
+  LNode *s = (LNode *)malloc(sizeof(LNode));
+  s->data = e;
+  s->next = p->next;
+  p->next = s;
+  return true;
+}
+
 //删除节点
 bool DeleteNode(LNode *p)
 {
