@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//递归删除单链表中所有值为x的结点
+//1. 递归删除不带头结点单链表中所有值为x的结点
 void delete_x(LinkList &L, int x)
 {
   if (L == NULL)
@@ -23,6 +23,30 @@ void delete_x(LinkList &L, int x)
   else
   {
     delete_x(L->next, x);
+  }
+}
+
+//2. 删除带结点的单链表中所有值为x的节点
+void Del_x_recursion(LinkList L, int x)
+{
+  LNode *p = L->next;
+  LNode *pre = L;
+  LNode *q;
+
+  while (p != NULL)
+  {
+    if (p->data == x)
+    {
+      q = p;
+      p = p->next;
+      pre->next = p;
+      free(q);
+    }
+    else
+    {
+      pre = p;
+      p = p->next;
+    }
   }
 }
 
