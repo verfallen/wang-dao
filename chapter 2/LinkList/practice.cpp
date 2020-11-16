@@ -79,6 +79,27 @@ LinkList Reverse_2(LinkList L)
   return L;
 }
 
+//6: 递增有序（带头结点的单链表）
+void Sort(LinkList L)
+{
+  LNode *p = L->next, *pre;
+  LNode *r = r->next;
+  p->next = NULL;
+  p = r;
+
+  while (p != NULL)
+  {
+    r = p->next;
+    pre = L;
+
+    while (pre->next != NULL && pre->next->data < p->data)
+      pre = pre->next;
+    p->next = pre->next;
+    pre->next = p;
+    p = r;
+  }
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
