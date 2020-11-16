@@ -100,6 +100,29 @@ void Sort(LinkList L)
   }
 }
 
+//7. 删除介于给定两值之间的结点（带头结点的单链表）
+bool RangeDelete(LinkList &L, int s, int t)
+{
+  if (s > t)
+    return false;
+  LNode *pre = L, *p = L->next;
+  while (p != NULL)
+  {
+    if (p->data > s && p->data < t)
+    {
+      pre->next = p->next;
+      free(p);
+      p = pre->next;
+    }
+    else
+    {
+
+      pre = p;
+      p = p->next;
+    }
+  }
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
