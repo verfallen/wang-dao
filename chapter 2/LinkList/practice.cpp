@@ -34,6 +34,28 @@ void R_Print(LinkList L)
   printf("%d", L->data);
 }
 
+//4. 删除最小值节点（带有头结点的单链表）
+LinkList DeleteMin(LinkList &L)
+{
+  LNode *p = L->next, *pre = L;
+  LNode *minp = p, *minpre = pre;
+
+  while (p != NULL)
+  {
+    if (p->data < minp->data)
+    {
+      minp = p;
+      minpre = pre;
+    }
+    pre = p;
+    p = p->next;
+  }
+
+  minpre->next = minp->next;
+  free(minp);
+  return L;
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
