@@ -56,6 +56,29 @@ LinkList DeleteMin(LinkList &L)
   return L;
 }
 
+//5.就地逆置 （带头结点的单链表）
+/**
+ * 有两种思路：
+ * 1.头插法
+ * 2.指针反向
+ */
+LinkList Reverse_2(LinkList L)
+{
+  LNode *pre, *p = L->next, *r = p->next;
+  p->next = NULL;
+
+  while (r != NULL)
+  {
+    pre = p;
+    p = r;
+    r = r->next;
+    p->next = pre;
+  }
+
+  L->next = p;
+  return L;
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
