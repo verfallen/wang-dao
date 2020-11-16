@@ -1,5 +1,7 @@
 {
     "files.associations": {
         "string_view": "cpp"
-    }
+    },
+    "prettier.useTabs": true,
+    "editor.tabSize": 2
 }
