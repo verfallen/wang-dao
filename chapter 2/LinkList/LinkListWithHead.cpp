@@ -54,7 +54,7 @@ LinkList List_HeadInsert(LinkList &L)
   return L;
 }
 
-//尾插法，带头结点
+//尾插法，带头结点 TODO: 在第9题测试的结果中无法输出
 LinkList List_TailInsert(LinkList &L)
 {
   LNode *s, *r = L;
@@ -381,6 +381,35 @@ void RangeDelete(LinkList &L, int min, int max)
   }
 }
 
+/**
+ * 9. 按递增次序输出单链表中的结点元素
+ * 思路：遍历n次，每次找出最小值的结点，将其删除
+ */
+void Min_Delete(LinkList &head)
+{
+  LNode *p;
+  LNode *minpre;
+  while (head->next != NULL) //链表只剩头结点
+  {
+    minpre = head;
+    p = head->next;
+    while (p->next != NULL)
+    {
+      if (p->next->data < minpre->next->data)
+      {
+        minpre = p;
+      }
+      p = p->next;
+    }
+
+    printf("%d", minpre->next->data);
+    LNode *q = minpre->next;
+    minpre->next = q->next;
+    free(q);
+  }
+  free(head);
+}
+
 int main(int argc, char const *argv[])
 {
   // testHeadInsert();
@@ -389,16 +418,18 @@ int main(int argc, char const *argv[])
   LinkList L;
   InitList(L);
   List_HeadInsert(L);
-  PrintList(L);
+  List_TailInsert(L);
+  // PrintList(L);
 
   // DeleteMin(L);
   // Delete_X_1(L, 1);
   // LinkList L1;
   // L1 = Reverse_2(L);
   // Sort(L);
-  RangeDelete(L, 0, 5);
-  PrintList(L);
+  // RangeDelete(L, 0, 5);
+  // PrintList(L);
   // testListInsert(L);
 
+  Min_Delete(L);
   return 0;
 }
