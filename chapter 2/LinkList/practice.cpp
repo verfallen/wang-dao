@@ -26,15 +26,24 @@ void delete_x(LinkList &L, int x)
   }
 }
 
+//3. 反向输出带头结点的单链表
+void R_Print(LinkList L)
+{
+  if (L->next != NULL)
+    R_Print(L->next);
+  printf("%d", L->data);
+}
+
 int main(int argc, const char **argv)
 {
   LinkList L;
   InitList(L);
-  List_HeadInsert(L);
+  List_TailInsert(L);
   PrintList(L);
 
-  std::cout << "delete value 2" << std::endl;
-  delete_x(L, 2);
-  PrintList(L);
+  // std::cout << "delete value 2" << std::endl;
+  // delete_x(L, 2);
+  // PrintList(L);
+  R_Print(L);
   return 0;
 }
