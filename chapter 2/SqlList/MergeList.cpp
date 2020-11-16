@@ -12,7 +12,7 @@ bool MergeList(SqlList A, SqlList B, SqlList &C)
   while (i < A.length && j < B.length)
     if (A.data[i] <= B.data[j])
       C.data[k++] = A.data[i++];
-    else if (A.data[i] > B.data[j])
+    else
       C.data[k++] = B.data[j++];
 
   while (i < A.length)
@@ -20,7 +20,7 @@ bool MergeList(SqlList A, SqlList B, SqlList &C)
   while (j < B.length)
     C.data[k++] = B.data[j++];
 
-  C.length = k;
+  C.length = k + 1;
   return true;
 }
 

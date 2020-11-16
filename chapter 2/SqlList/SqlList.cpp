@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define InitSize 100
 
@@ -36,13 +37,26 @@ bool ListInsert(SqlList &list, int i, ElementType e)
   return true;
 }
 
+//增加动态数组的长度
+void IncreaseSize(SqlList &L, int len)
+{
+  int *p = L.data;
+  L.data = (int *)malloc(sizeof(int) * (L.MaxSize + len));
+  for (int i = 0; i < L.length; i++)
+    L.data[i] = p[i];
+
+  L.MaxSize = L.MaxSize + len;
+
+  free(p);
+}
+
 int LocateElem(SqlList &L, ElementType e)
 {
   for (int i = 0; i < L.length; i++)
     if (L.data[i] == e)
-      return i;
+      return i + 1;
 
-  return -1;
+  return 0;
 }
 
 ElementType GetElem(SqlList &list, int i)
@@ -130,7 +144,7 @@ void Reverse(SqlList &L)
 // 3. 删除所有值为x的元素
 void DelX(SqlList &list, ElementType x)
 {
-  int num = 0;
+  int num = 0; //记录等于 x的元素个数
   for (int i = 0; i < list.length; i++)
   {
     if (list.data[i] == x)
@@ -183,6 +197,148 @@ bool Del_2(SqlList &L, ElementType s, ElementType t)
 
   L.length = i;
   return true;
+}
+
+//4.2 在有序顺序表中删除s~t之间的元素
+bool DelRange3(SqlList &L, ElementType s, ElementType t)
+{
+  int i, j;
+  if (s >= t || L.length == 0)
+    return false;
+
+  for (i = 0; i < L.length && L.data[i] < s; i++)
+    ;
+  if (i > L.length)
+    return false;
+
+  for (j = i; j < L.length && L.data[j] <= t; j++)
+    ;
+  for (; j < L.length; i++, j++)
+    L.data[i] = L.data[j];
+  L.length = i + 1;
+  return true;
+}
+
+//6 从有序顺序表中删除值重复的元素
+bool DelSame(SqlList &L)
+{
+  int i; //i 表示存储的不相同元素的下标
+  int j; //j 访问的当前元素
+
+  if (L.length == 0)
+    return false;
+
+  for (i = 0, j = 1; j < L.length; j++)
+    if (L.data[i] != L.data[j])
+      L.data[++i] = L.data[j];
+
+  L.length = i + 1;
+  return true;
+}
+
+//8 将AB两个顺序表逆置为 BA
+/**
+ * 1. 将AB 原地逆置为（BA）-1
+ * 2. 分别将前n个和后m个逆置
+ */
+
+typedef int DataType;
+void Reverse(DataType A[], int left, int right, int arraySize)
+{
+  if (left >= right || right >= arraySize)
+    return;
+  int mid = (left + right) / 2;
+
+  for (int i = 0; i < mid; i++)
+  {
+    DataType tmp = A[left + i];
+    A[left + i] = A[right - i];
+    A[right - i] = tmp;
+  }
+}
+
+void Exchange(DataType A[], int m, int n, int arraySize)
+{
+  Reverse(A, 0, m + n - 1, arraySize);
+  Reverse(A, 0, n - 1, arraySize);
+  Reverse(A, n, m + n - 1, arraySize);
+}
+
+// 9. 在递增的有序表中查找元素x,若找到则将其与其后继元素交换，若找不到则将其插入表中使其仍为有序表
+int BinarySearch(ElementType A[], int n, ElementType x)
+{
+  int low = 0, high = n - 1, mid;
+
+  while (low <= high)
+  {
+    mid = (low + high) / 2;
+    if (A[mid] == x)
+      return mid;
+    else if (A[mid] < x)
+      low = mid + 1;
+    else
+      high = mid - 1;
+  }
+
+  return -1;
+}
+
+void SearxhExchangeInsert(ElementType A[], int n, ElementType x)
+{
+  int mid, tmp, i;
+  mid = BinarySearch(A, n, x);
+
+  if (mid != -1 && mid != n - 1)
+  {
+    A[mid] = A[mid + 1];
+    A[mid + 1] = x;
+  }
+
+  if (mid == -1)
+  {
+    for (i = n - 1; A[i] > x; i--)
+      A[i + 1] = A[i];
+    A[i + 1] = x;
+  }
+}
+
+//10：循环左移p个位置
+void swap(int &a, int &b)
+{
+  int tmp;
+  tmp = a;
+  a = b;
+  b = tmp;
+}
+void Reverse(int R[], int from, int to)
+{
+  int i, tmp;
+  for (i = 0; i < (to - from + 1) / 2; i++)
+    swap(R[from + i], R[to - i]);
+}
+void Converse(int R[], int n, int p)
+{
+  Reverse(R, 0, p - 1);
+  Reverse(R, p, n - 1);
+  Reverse(R, 0, n - 1);
+}
+
+//12: 找出未出现的最小正整数
+int findMissMin(int A[], int n)
+{
+  int i, *B;
+  B = (int *)malloc(sizeof(int) * n);
+  memset(B, 0, sizeof(int) * n);
+
+  for (i = 0; i < n; i++)
+    if (A[i] > 0 && A[i] <= n)
+      B[A[i] - 1] = 1;
+
+  for (i = 0; i < n; i++)
+    if (B[i] == 0)
+      break;
+
+  return i + 1;
 }
 
 void testDelMin(SqlList &L)
