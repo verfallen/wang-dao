@@ -122,6 +122,41 @@ bool RangeDelete(LinkList &L, int s, int t)
     }
   }
 }
+//8. 找公共节点
+LinkList findCommon(LinkList L1, LinkList L2)
+{
+  int len1 = Length(L1);
+  int len2 = Length(L2);
+  int dist;
+
+  LinkList longList, shortList;
+  if (len1 > len2)
+  {
+    longList = L1->next;
+    shortList = L2->next;
+    dist = len1 - len2;
+  }
+  else
+  {
+    longList = L2->next;
+    shortList = L1->next;
+    dist = len2 - len1;
+  }
+
+  while (dist--)
+  {
+    longList = longList->next;
+  }
+
+  while (longList != NULL)
+  {
+    if (longList == shortList)
+      return longList;
+    longList = longList->next;
+    shortList = shortList->next;
+  }
+  return NULL;
+}
 
 int main(int argc, const char **argv)
 {
