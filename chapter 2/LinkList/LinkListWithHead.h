@@ -20,7 +20,7 @@ void PrintList(LinkList L);
 bool InsertNextNode(LNode *p, int e);
 bool InsertPriorNode(LNode *p, int e);
 
-//å¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨åˆå§‹åŒ–
+//´øÍ·½áµãµÄµ¥Á´±í³õÊ¼»¯
 bool InitList(LinkList &L)
 {
   L = (LNode *)malloc(sizeof(LNode));
@@ -28,13 +28,13 @@ bool InitList(LinkList &L)
   return true;
 }
 
-//åˆ¤æ–­å•é“¾è¡¨æ˜¯å¦ä¸ºç©ºï¼ˆå¸¦å¤´ç»“ç‚¹ï¼‰
+//ÅÐ¶Ïµ¥Á´±íÊÇ·ñÎª¿Õ£¨´øÍ·½áµã£©
 bool Empty(LinkList L)
 {
   return L->next == NULL;
 }
 
-//å¤´æ’æ³•ï¼Œå¸¦å¤´ç»“ç‚¹
+//Í·²å·¨£¬´øÍ·½áµã
 LinkList List_HeadInsert(LinkList &L)
 {
   LNode *s;
@@ -54,7 +54,7 @@ LinkList List_HeadInsert(LinkList &L)
   return L;
 }
 
-//å°¾æ’æ³•ï¼Œå¸¦å¤´ç»“ç‚¹
+//Î²²å·¨£¬´øÍ·½áµã
 LinkList List_TailInsert(LinkList &L)
 {
   LNode *s, *r = L;
@@ -68,7 +68,7 @@ LinkList List_TailInsert(LinkList &L)
     r->next = s;
     r = s;
   }
-  r->next = NULL; //æœ€åŽä¸€ä¸ªç»“ç‚¹è¦æŒ‡å‘null
+  r->next = NULL; //×îºóÒ»¸ö½áµãÒªÖ¸Ïònull
   return L;
 }
 
@@ -76,7 +76,7 @@ LinkList List_TailInsert(LinkList &L)
 // {
 //   if (i < 0)
 //     return NULL;
-//   int j = 0; //jä»Ž0å¼€å§‹ï¼Œè¿™æ˜¯ä¸Žä¸å¸¦å¤´ç»“ç‚¹çš„é“¾è¡¨çš„åŒºåˆ«
+//   int j = 0; //j´Ó0¿ªÊ¼£¬ÕâÊÇÓë²»´øÍ·½áµãµÄÁ´±íµÄÇø±ð
 //   LNode *p = L;
 //   while (p && j < i)
 //   {
@@ -103,7 +103,7 @@ LNode *GetElem(LinkList L, int i)
 
 LNode *LocateElem(LinkList L, int e)
 {
-  //åŒºåˆ«ï¼šç¬¬ä¸€ä¸ªèŠ‚ç‚¹ä¸ºå¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
+  //Çø±ð£ºµÚÒ»¸ö½ÚµãÎªÍ·½áµãµÄÏÂÒ»¸ö½Úµã
   LNode *p = L->next;
 
   while (p && p->data != e)
@@ -126,19 +126,30 @@ int Length(LinkList L)
   return len;
 }
 
+// void PrintList(LinkList L)
+// {
+//   LNode *p = L->next;
+
+//   while (p != NULL)
+//   {
+//     printf("%d,", p->data);
+//     p = p->next;
+//   }
+//   printf("\n");
+// }
+
 void PrintList(LinkList L)
 {
-  LNode *p = L->next;
-
-  while (p != NULL)
+  LNode *s = L->next;
+  while (s != NULL)
   {
-    printf("%d,", p->data);
-    p = p->next;
+    cout << s->data << " ";
+    s = s->next;
   }
-  printf("\n");
+  cout << endl;
 }
 
-//åŽæ’æ“ä½œï¼šåœ¨pèŠ‚ç‚¹ä¹‹åŽæ’å…¥å…ƒç´ e
+//ºó²å²Ù×÷£ºÔÚp½ÚµãÖ®ºó²åÈëÔªËØe
 bool InsertNextNode(LNode *p, int e)
 {
   if (!p)
@@ -152,7 +163,7 @@ bool InsertNextNode(LNode *p, int e)
   return true;
 }
 
-//å‰æ’æ“ä½œï¼šåœ¨pç»“ç‚¹ä¹‹å‰æ’å…¥å…ƒç´ e
+//Ç°²å²Ù×÷£ºÔÚp½áµãÖ®Ç°²åÈëÔªËØe
 bool InsertPriorNode(LNode *p, int e)
 {
   if (!p)
@@ -168,7 +179,7 @@ bool InsertPriorNode(LNode *p, int e)
   return true;
 }
 
-//å°†eæ’å…¥åˆ°ç¬¬iä¸ªä½ç½®ä¸Šï¼Œ(ä¸å¤´ç»“ç‚¹çš„é“¾è¡¨)
+//½«e²åÈëµ½µÚi¸öÎ»ÖÃÉÏ£¬(²»Í·½áµãµÄÁ´±í)
 bool ListInsert(LinkList &L, int i, int e)
 {
   if (i < 1)
@@ -182,14 +193,14 @@ bool ListInsert(LinkList &L, int i, int e)
   return InsertNextNode(p, e);
 }
 
-//åœ¨ç¬¬iä¸ªä½ç½®æ’å…¥å…ƒç´ e(å¸¦å¤´ç»“ç‚¹)
+//ÔÚµÚi¸öÎ»ÖÃ²åÈëÔªËØe(´øÍ·½áµã)
 bool ListInsertElement(LinkList &L, int i, int e)
 {
   if (i < 1)
     return false;
 
   LNode *p = L;
-  int j = 0; //è¡¨ç¤ºå½“å‰pæŒ‡å‘çš„èŠ‚ç‚¹
+  int j = 0; //±íÊ¾µ±Ç°pÖ¸ÏòµÄ½Úµã
 
   while (p != NULL && j < i - 1)
   {
@@ -207,7 +218,7 @@ bool ListInsertElement(LinkList &L, int i, int e)
   return true;
 }
 
-//åˆ é™¤èŠ‚ç‚¹
+//É¾³ý½Úµã
 bool DeleteNode(LNode *p)
 {
   if (!p)
@@ -219,7 +230,7 @@ bool DeleteNode(LNode *p)
   return false;
 }
 
-//åˆ é™¤é“¾è¡¨ç¬¬iä¸ªèŠ‚ç‚¹
+//É¾³ýÁ´±íµÚi¸ö½Úµã
 bool ListDelete(LinkList &L, int i, int &e)
 {
   if (i < 1)
@@ -261,7 +272,7 @@ void testListInsert(LinkList &L)
   PrintList(L);
 }
 
-//åˆ é™¤æ‰€æœ‰å€¼ä¸ºxçš„ç»“ç‚¹
+//É¾³ýËùÓÐÖµÎªxµÄ½áµã
 void Delete_X_1(LinkList &L, int x)
 {
   LNode *p = L->next;
@@ -285,8 +296,8 @@ void Delete_X_1(LinkList &L, int x)
   }
 }
 
-//åå‘å•é“¾è¡¨,åˆ©ç”¨é€’å½’æ¥å®žçŽ°
-//TODO: ä¸ºä»€ä¹ˆå¤šè¾“å‡ºäº†ä¸€ä¸ªé›¶ï¼Ÿæ˜¯å› ä¸ºå¤´ç»“ç‚¹å—
+//·´Ïòµ¥Á´±í,ÀûÓÃµÝ¹éÀ´ÊµÏÖ
+//TODO: ÎªÊ²Ã´¶àÊä³öÁËÒ»¸öÁã£¿ÊÇÒòÎªÍ·½áµãÂð
 void ReversePrint(LinkList L)
 {
 
@@ -298,7 +309,7 @@ void ReversePrint(LinkList L)
   }
 }
 
-//åˆ é™¤æœ€å°å€¼ç»“ç‚¹
+//É¾³ý×îÐ¡Öµ½áµã
 LinkList DeleteMin(LinkList &L)
 {
   LNode *pre = L->next;
@@ -321,7 +332,7 @@ LinkList DeleteMin(LinkList &L)
   return L;
 }
 
-// åŽŸåœ°ç®—æ³•ï¼šå°†å•é“¾è¡¨é€†ç½®
+// Ô­µØËã·¨£º½«µ¥Á´±íÄæÖÃ
 LinkList Reverse_1(LinkList L)
 {
   LNode *p, *r;
@@ -358,7 +369,7 @@ LinkList Reverse_2(LinkList L)
   return L;
 }
 
-//åˆ é™¤æ‰€æœ‰ä»‹äºŽminä¸Žmaxä¹‹é—´çš„å…ƒç´ 
+//É¾³ýËùÓÐ½éÓÚminÓëmaxÖ®¼äµÄÔªËØ
 void RangeDelete(LinkList &L, int min, int max)
 {
   LNode *p = L->next;
@@ -381,14 +392,14 @@ void RangeDelete(LinkList &L, int min, int max)
 }
 
 /**
- * 9. æŒ‰é€’å¢žæ¬¡åºè¾“å‡ºå•é“¾è¡¨ä¸­çš„ç»“ç‚¹å…ƒç´ 
- * æ€è·¯ï¼šéåŽ†næ¬¡ï¼Œæ¯æ¬¡æ‰¾å‡ºæœ€å°å€¼çš„ç»“ç‚¹ï¼Œå°†å…¶åˆ é™¤
+ * 9. °´µÝÔö´ÎÐòÊä³öµ¥Á´±íÖÐµÄ½áµãÔªËØ
+ * Ë¼Â·£º±éÀún´Î£¬Ã¿´ÎÕÒ³ö×îÐ¡ÖµµÄ½áµã£¬½«ÆäÉ¾³ý
  */
 void Min_Delete(LinkList &head)
 {
   LNode *p;
   LNode *minpre;
-  while (head->next != NULL) //é“¾è¡¨åªå‰©å¤´ç»“ç‚¹
+  while (head->next != NULL) //Á´±íÖ»Ê£Í·½áµã
   {
     minpre = head;
     p = head->next;
@@ -409,26 +420,26 @@ void Min_Delete(LinkList &head)
   free(head);
 }
 
-int main(int argc, char const *argv[])
-{
-  // testHeadInsert();
-  // testTailInsert();
+// int main(int argc, char const *argv[])
+// {
+//   // testHeadInsert();
+//   // testTailInsert();
 
-  LinkList L;
-  InitList(L);
-  List_HeadInsert(L);
-  List_TailInsert(L);
-  // PrintList(L);
+//   LinkList L;
+//   InitList(L);
+//   List_HeadInsert(L);
+//   List_TailInsert(L);
+//   // PrintList(L);
 
-  // DeleteMin(L);
-  // Delete_X_1(L, 1);
-  // LinkList L1;
-  // L1 = Reverse_2(L);
-  // Sort(L);
-  // RangeDelete(L, 0, 5);
-  // PrintList(L);
-  // testListInsert(L);
+//   // DeleteMin(L);
+//   // Delete_X_1(L, 1);
+//   // LinkList L1;
+//   // L1 = Reverse_2(L);
+//   // Sort(L);
+//   // RangeDelete(L, 0, 5);
+//   // PrintList(L);
+//   // testListInsert(L);
 
-  Min_Delete(L);
-  return 0;
-}
+//   Min_Delete(L);
+//   return 0;
+// }
