@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//递归删除单链表中所有值为x的结点
+//1. 递归删除不带头结点单链表中所有值为x的结点
 void delete_x(LinkList &L, int x)
 {
   if (L == NULL)
