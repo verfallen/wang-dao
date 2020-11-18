@@ -25,6 +25,26 @@ bool Judge(char str[])
   return true;
 }
 
+bool Judge2(char A[])
+{
+  int i = 0, count = 0;
+
+  while (A[i] != '\0')
+  {
+    if (A[i] == 'I')
+      count++;
+    if (A[i] == 'O')
+      count--;
+
+    if (count < 0)
+      return false;
+    i++;
+  }
+
+  if (count != 0)
+    return false;
+  return true;
+}
 int main(int argc, const char **argv)
 {
   char str[] = "III0IOIO";
