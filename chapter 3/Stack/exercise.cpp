@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include "../../chapter2/LinkList/LinkListWithHead.h"
 
 //3.1节 应用题3.2  判定给定的操作序列是否合法
 bool Judge(char str[])
@@ -44,6 +45,32 @@ bool Judge2(char A[])
   if (count != 0)
     return false;
   return true;
+}
+
+//3.1节  4.判断链表是否中心对称
+bool duicheng(LinkList L)
+{
+  int n = Length(L);
+  char s[n / 2];
+
+  LNode *p = L->next;
+  int i;
+  for (i = 0; i < n / 2; i++)
+  {
+    s[i] = p->data;
+    p = p->next;
+  }
+  i--;
+
+  while (p != NULL && s[i] == p->data)
+  {
+    i--;
+    p = p->next;
+  }
+
+  if (p == NULL)
+    return true;
+  return false;
 }
 int main(int argc, const char **argv)
 {
