@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../SqStack.h"
+#include "../Stack/SqStack.h"
 
 /**
  * 括号匹配
