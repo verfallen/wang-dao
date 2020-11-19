@@ -6,7 +6,7 @@ using namespace std;
 
 #define MAXLEN 255
 
-//æ•°ç»„ä¸‹æ ‡ä»1å¼€å§‹ï¼Œç›®çš„æ˜¯ä¸ºäº†è®©æ•°ç»„ä¸‹æ ‡å’Œå­—ç¬¦ä½åºä¸€è‡´
+//Êı×éÏÂ±ê´Ó1¿ªÊ¼£¬Ä¿µÄÊÇÎªÁËÈÃÊı×éÏÂ±êºÍ×Ö·ûÎ»ĞòÒ»ÖÂ
 typedef struct
 {
   char ch[MAXLEN];
@@ -98,7 +98,7 @@ void PrintString(SString S)
   printf("\n");
 }
 
-//Sä¸ºä¸»ä¸²ï¼ŒTä¸ºå¾…åŒ¹é…çš„ä¸²
+//SÎªÖ÷´®£¬TÎª´ıÆ¥ÅäµÄ´®
 int Index(SString S, SString T)
 {
   int tLen = T.length;
@@ -122,20 +122,20 @@ int Index(SString S, SString T)
   return -1;
 }
 
-//è¯·ç©ºæ ˆåªåšé€»è¾‘åˆ é™¤
+//Çë¿ÕÕ»Ö»×öÂß¼­É¾³ı
 bool ClearString(SString &S)
 {
   S.length = 0;
   return true;
 }
 
-//é”€æ¯æ ˆé‡Šæ”¾ç©ºé—´
+//Ïú»ÙÕ»ÊÍ·Å¿Õ¼ä
 bool DestroyString(SString &S)
 {
   free(S.ch);
   return true;
 }
-//æš´åŠ›åŒ¹é…ç®—æ³• O(mn)
+//±©Á¦Æ¥ÅäËã·¨ O(mn)
 int Index2(SString S, SString T)
 {
   int i = 1;
@@ -157,6 +157,32 @@ int Index2(SString S, SString T)
       return i - T.length;
     return -1;
   }
+}
+
+//¼òµ¥Ä£Ê½Æ¥ÅäËã·¨
+int Index3(SString S, SString T)
+{
+  int k = 1; //kÖ¸Ïò×Ó´®µÄµÚÒ»¸öÎ»ÖÃ
+  int i = 1, j = 1;
+
+  while (i <= S.length && j <= T.length)
+  {
+    if (S.ch[i] == T.ch[j])
+    {
+      i++;
+      j++;
+    }
+    else
+    {
+      k++;
+      i = k;
+      j = 1;
+    }
+  }
+
+  if (j > T.length)
+    return k;
+  return 0;
 }
 
 int main(int argc, const char **argv)
@@ -183,7 +209,7 @@ int main(int argc, const char **argv)
   StrAssign(S, s3);
   PrintString(S);
 
-  std::cout << StrCompare(S, T) << std::endl; //TODO: è¿”å›å€¼ä¸å¯¹
+  std::cout << StrCompare(S, T) << std::endl; //TODO: ·µ»ØÖµ²»¶Ô
   std::cout << 'h' - 'H' << std::endl;
 
   SString Sub;
