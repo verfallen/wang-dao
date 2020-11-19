@@ -185,6 +185,30 @@ int Index3(SString S, SString T)
   return 0;
 }
 
+//KMP算法，匹配失败时，主串指针i 不懂，让模式串指针j回溯到1
+
+int IndexKMP(SString S, SString T, int next[])
+{
+  int i = 1, j = 1;
+
+  while (i <= S.length && j <= T.length)
+  {
+    if (j == 0 || S.ch[i] == T.ch[j])
+    {
+      ++i;
+      ++j;
+    }
+    else
+    {
+      j = next[j];
+    }
+  }
+
+  if (j > T.length)
+    return i - T.length;
+  return 0;
+}
+
 int main(int argc, const char **argv)
 {
   SString S;
