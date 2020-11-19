@@ -6,6 +6,7 @@ using namespace std;
 
 #define MAXLEN 255
 
+//数组下标从1开始，目的是为了让数组下标和字符位序一致
 typedef struct
 {
   char ch[MAXLEN];
@@ -20,7 +21,7 @@ void InitString(SString &S)
 bool StrAssign(SString &S, char chars[])
 {
   S.length = 0;
-  for (int i = 0; chars[i]; i++)
+  for (int i = 1; chars[i]; i++)
   {
     S.ch[i] = chars[i];
     S.length++;
@@ -41,7 +42,7 @@ bool StrEmpty(SString &S)
 
 int StrCompare(SString S, SString T)
 {
-  int i = 0;
+  int i = 1;
   while (i < S.length && i < T.length)
   {
     if (S.ch[i] != T.ch[i])
@@ -62,10 +63,8 @@ bool SubString(SString &Sub, SString S, int pos, int len)
   if (pos + len - 1 > S.length)
     return false;
 
-  for (int i = 0; i < len; i++)
-  {
+  for (int i = 1; i < len; i++)
     Sub.ch[i] = S.ch[pos + i];
-  }
 
   Sub.length = len;
 
@@ -75,12 +74,12 @@ bool SubString(SString &Sub, SString S, int pos, int len)
 bool Concat(SString &T, SString S1, SString S2)
 {
 
-  for (int i = 0; i < S1.length; i++)
+  for (int i = 1; i <= S1.length; i++)
   {
     T.ch[i] = S1.ch[i];
   }
 
-  for (int j = 0; j < S2.length; j++)
+  for (int j = 1; j <= S2.length; j++)
   {
     T.ch[S1.length + j] = S2.ch[j];
   }
@@ -99,16 +98,16 @@ void PrintString(SString S)
   printf("\n");
 }
 
-//SΪ������TΪ��ƥ��Ĵ�
+//S为主串，T为待匹配的串
 int Index(SString S, SString T)
 {
   int tLen = T.length;
   int sLen = S.length;
-  int i = 0;
+  int i = 1;
   SString sub;
   InitString(sub);
 
-  while (i <= sLen - tLen)
+  while (i <= sLen - tLen + 1)
   {
     SubString(sub, S, i, tLen);
     if (StrCompare(sub, T) != 0)
@@ -123,30 +122,26 @@ int Index(SString S, SString T)
   return -1;
 }
 
+//请空栈只做逻辑删除
 bool ClearString(SString &S)
 {
-
-  for (int i = 0; i < S.length; i++)
-  {
-    S.ch[i] = '\0';
-  }
-
   S.length = 0;
   return true;
 }
 
+//销毁栈释放空间
 bool DestroyString(SString &S)
 {
   free(S.ch);
   return true;
 }
-//����ƥ���㷨 O(mn)
+//暴力匹配算法 O(mn)
 int Index2(SString S, SString T)
 {
-  int i = 0;
-  int j = 0;
+  int i = 1;
+  int j = 1;
 
-  while (i < S.length && j < T.length)
+  while (i <= S.length && j <= T.length)
   {
     if (S.ch[i] == T.ch[i])
     {
@@ -188,7 +183,7 @@ int main(int argc, const char **argv)
   StrAssign(S, s3);
   PrintString(S);
 
-  std::cout << StrCompare(S, T) << std::endl; //TODO: ����ֵ����
+  std::cout << StrCompare(S, T) << std::endl; //TODO: 返回值不对
   std::cout << 'h' - 'H' << std::endl;
 
   SString Sub;
