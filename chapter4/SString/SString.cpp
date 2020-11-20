@@ -186,7 +186,6 @@ int Index3(SString S, SString T)
 }
 
 //KMP算法，匹配失败时，主串指针i 不懂，让模式串指针j回溯到1
-
 int IndexKMP(SString S, SString T, int next[])
 {
   int i = 1, j = 1;
