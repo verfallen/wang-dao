@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../chapter3/Queue/LinkQueueWithHead.h"
 
 typedef int ElemType;
 typedef struct BiTNode
@@ -72,4 +73,29 @@ int Depth(BiTree T)
   int r = Depth(T->rchild);
 
   return l > r ? l + 1 : r + 1;
+}
+
+/**
+ * 层次遍历
+ * 1. 初始化辅助队列
+ * 2. 根节点入队
+ * 3. 若队列非空，则队头结点出队，将其左右孩子插入队列
+ * 4. 重复步骤3
+ */
+void LevelOrder(BiTree T)
+{
+  LinkQueue Q;
+  InitQueque(Q);
+
+  BiTree p;
+  EnQueue(Q, T);
+  while (!Empty(Q))
+  {
+    DeQueue(Q, p);
+    visit(p);
+    if (p->lchild != NULL)
+      EnQueue(Q, p->lchild);
+    if (p->rchild != NULL)
+      EnQueue(Q, p->rchild);
+  }
 }
