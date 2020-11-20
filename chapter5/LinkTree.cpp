@@ -99,3 +99,24 @@ void LevelOrder(BiTree T)
       EnQueue(Q, p->rchild);
   }
 }
+
+//找中序前驱节点
+BiTNode *p, *pre = NULL, *final;
+
+void findPre(BiTree T)
+{
+  if (T != NULL)
+  {
+    findPre(T->lchild);
+    visit2(T);
+    findPre(T->rchild);
+  }
+}
+
+void visit2(BiTNode *q)
+{
+  if (q == p)
+    final = pre;
+  else
+    pre = q;
+}
