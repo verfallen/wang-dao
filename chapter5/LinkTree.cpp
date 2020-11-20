@@ -62,3 +62,14 @@ void PostOrder(BiTree T)
     visit(T);
   }
 }
+
+//求深度
+int Depth(BiTree T)
+{
+  if (T == NULL)
+    return 0;
+  int l = Depth(T->lchild);
+  int r = Depth(T->rchild);
+
+  return l > r ? l + 1 : r + 1;
+}
