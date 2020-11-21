@@ -26,7 +26,7 @@ void CreateInThread(ThreadTree T)
 }
 
 //访问时进行线索化
-void visit(ThreadNode *p)
+void Visit(ThreadNode *p)
 {
   //如果当前结点的左指针为空，指向前一个结点
   if (p->lchild == NULL)
@@ -49,7 +49,7 @@ void InThread(ThreadTree T)
   if (T != NULL)
   {
     InThread(T->lchild);
-    visit(T);
+    Visit(T);
     InThread(T->rchild);
   }
 }
@@ -139,4 +139,26 @@ void CreateInThread(ThreadTree T)
     if (pre->rchild != NULL)
       pre->rtag = 1;
   }
+}
+
+/**
+ * 在线索二叉树中找前驱，后继
+ */
+
+ThreadNode *Firstnode(ThreadNode *p);
+
+//在中序线索二叉树中找到p的后继结点
+ThreadNode *Nextnode(ThreadNode *p)
+{
+  if (p->rtag == 0)
+    return Firstnode(p);
+  return p->rchild;
+}
+
+//找到以p为根节点，第一个被中序遍历的结点
+ThreadNode *Firstnode(ThreadNode *p)
+{
+  while (p->ltag == 0)
+    p = p->lchild;
+  return p;
 }
