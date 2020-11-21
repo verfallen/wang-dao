@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../chapter3/Queue/LinkQueueWithHead.h"
+#include "../chapter3/Stack/SqStack.h"
 
 typedef int ElemType;
 typedef struct BiTNode
@@ -50,6 +51,31 @@ void InOrder(BiTree T)
     InOrder(T->lchild);
     visit(T);
     InOrder(T->rchild);
+  }
+}
+
+//第二种中序遍历
+SqStack S;
+
+void InOrder(BiTree T)
+{
+  InitStack(S);
+
+  BiTree p = T;
+
+  while (p != NULL || !StackEmpty(S))
+  {
+    if (p)
+    {
+      Push(S, p);
+      p = p->lchild;
+    }
+    else
+    {
+      Pop(S, p);
+      visit(p);
+      p = p->rchild;
+    }
   }
 }
 
