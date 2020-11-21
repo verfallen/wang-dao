@@ -151,7 +151,7 @@ ThreadNode *Firstnode(ThreadNode *p);
 ThreadNode *Nextnode(ThreadNode *p)
 {
   if (p->rtag == 0)
-    return Firstnode(p);
+    return Firstnode(p->rchild);
   return p->rchild;
 }
 
