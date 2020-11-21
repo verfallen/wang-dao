@@ -174,3 +174,22 @@ void InOrder(ThreadNode *T)
     p = Nextnode(p);
   }
 }
+
+//找到以p为子结点的树中，最后一个被中序遍历的结点
+ThreadNode *Lastnode(ThreadNode *p);
+
+//在中序线索二叉树中找到p的前驱结点
+ThreadNode *Prenode(ThreadNode *p)
+{
+  if (p->ltag == 0)
+    return Lastnode(p->lchild);
+  return p->lchild;
+}
+
+ThreadNode *Lastnode(ThreadNode *p)
+{
+  while (p->rtag == 0)
+    p = p->rchild;
+
+  return p;
+}
