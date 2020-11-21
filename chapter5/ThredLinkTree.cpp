@@ -94,3 +94,49 @@ void CreateInThread2(ThreadTree T)
       pre->rtag = 1;
   }
 }
+
+//用于线索化的visit
+void Visit(ThreadNode *p)
+{
+  if (p != NULL)
+  {
+    if (p->lchild == NULL)
+    {
+      p->lchild = pre;
+      p->ltag = 1;
+    }
+
+    if (pre != NULL && pre->rchild == NULL)
+    {
+      pre->rchild = p;
+      pre->rtag = 1;
+    }
+
+    pre = p;
+  }
+}
+
+//先序遍历二叉树
+void PreThread(ThreadTree T)
+{
+  if (T != NULL)
+  {
+    Visit(T);
+    if (T->ltag == 0)
+      PreThread(T->lchild);
+    if (T->rtag == 0)
+      PreThread(T->rchild);
+  }
+}
+
+//先序线索化
+void CreateInThread(ThreadTree T)
+{
+  pre = NULL;
+  if (T != NULL)
+  {
+    PreThread(T);
+    if (pre->rchild != NULL)
+      pre->rtag = 1;
+  }
+}
