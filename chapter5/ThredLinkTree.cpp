@@ -162,3 +162,15 @@ ThreadNode *Firstnode(ThreadNode *p)
     p = p->lchild;
   return p;
 }
+
+//对中序线索二叉树进行中序遍历
+void InOrder(ThreadNode *T)
+{
+  ThreadNode *p = Firstnode(T);
+
+  while (p != NULL)
+  {
+    printf("%s", p->data);
+    p = Nextnode(p);
+  }
+}
