@@ -193,3 +193,15 @@ ThreadNode *Lastnode(ThreadNode *p)
 
   return p;
 }
+
+//对中序线索二叉树进行逆向中序遍历
+void RevInOrder(ThreadNode *T)
+{
+  ThreadNode *p = Lastnode(T);
+
+  while (p != NULL)
+  {
+    printf("%c", p);
+    p = Prenode(p);
+  }
+}
