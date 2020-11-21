@@ -17,7 +17,7 @@ typedef struct
   int front, rear;
 } SqQueue;
 
-void InitList(SqQueue &Q)
+void InitQueue(SqQueue &Q)
 {
   Q.front = Q.rear = 0;
 }
