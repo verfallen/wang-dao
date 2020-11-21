@@ -43,6 +43,28 @@ void PreOrder(BiTree T)
   }
 }
 
+//第二种先序遍历
+void PreOrder(BiTree T)
+{
+  SqStack S;
+  InitStack(S);
+  BiTree p = T;
+
+  while (p != NULL || !StackEmpty(S))
+  {
+    if (p)
+    {
+      visit(p);
+      Push(S, p);
+    }
+    else
+    {
+      Pop(p);
+      p = p->rchild;
+    }
+  }
+}
+
 //中序遍历
 void InOrder(BiTree T)
 {
@@ -55,10 +77,9 @@ void InOrder(BiTree T)
 }
 
 //第二种中序遍历
-SqStack S;
-
 void InOrder(BiTree T)
 {
+  SqStack S;
   InitStack(S);
 
   BiTree p = T;
