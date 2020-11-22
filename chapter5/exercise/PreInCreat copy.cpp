@@ -7,10 +7,15 @@
  */
 bool isComplete(BiTree T)
 {
+
+  //空树也是完全二叉树
+  if (T == NULL)
+    return true;
+
   LinkQueue Q;
   InitQueque(Q);
   EnQueue(Q, T);
-  BiTNode *p = T;
+  BiTNode *p;
 
   while (!Empty(Q))
   {
