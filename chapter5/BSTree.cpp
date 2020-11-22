@@ -48,3 +48,16 @@ bool BST_Insert(BSTree &T, int key)
     return BST_Insert(T->lchild, key);
   return BST_Insert(T->rchild, key);
 }
+
+//按照给定序列构建二叉排序树
+void Creat_BST(BSTree &T, int num[], int n)
+{
+  T = NULL;
+  int i = 0;
+  while (i < n)
+  {
+    BST_Insert(T, num[i]);
+    i++;
+  }
+}
+
