@@ -31,3 +31,20 @@ BSTNode *BSTSearch(BSTree T, int key)
     return BSTSearch(T->lchild, key);
   return BSTSearch(T->rchild, key);
 }
+
+//在二叉排序树中插入关键字为k的新结点（递归实现）
+bool BST_Insert(BSTree &T, int key)
+{
+  if (T == NULL)
+  {
+    T = (BSTree)malloc(sizeof(BSTNode));
+    T->key = key;
+    T->lchild = T->rchild = NULL;
+    return true;
+  }
+  if (key == T->key)
+    return 0;
+  if (key < T->key)
+    return BST_Insert(T->lchild, key);
+  return BST_Insert(T->rchild, key);
+}
