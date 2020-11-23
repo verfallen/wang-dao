@@ -61,3 +61,15 @@ void Creat_BST(BSTree &T, int num[], int n)
   }
 }
 
+/**
+ * 删除值为key 的结点
+ * 思路：
+ * 1. 找到该结点，如果为空，返回false
+ * 2. 如果为叶子结点，直接删除
+ * 3. 如果左右子树只有一个，将其子树放在被删除结点的父节点上
+ * 4. 否则，用其右子树中最小的结点替代
+ */
+bool BST_Delete(BSTree &T, int key)
+{
+  BSTNode *p = BST_Search(T, key);
+}
