@@ -20,12 +20,12 @@ typedef struct
   LinkNode *front, *rear;
 } LinkQueue;
 
-void InitQueque(LinkQueue &Q);
+void InitQueue(LinkQueue &Q);
 bool Empty(LinkQueue Q);
 bool EnQueue(LinkQueue &Q, ElemType x);
 bool DeQueue(LinkQueue &Q, ElemType &x);
 
-void InitQueque(LinkQueue &Q)
+void InitQueue(LinkQueue &Q)
 {
   Q.front = Q.rear = (LinkNode *)malloc(sizeof(LinkNode));
   Q.front->next = NULL;
