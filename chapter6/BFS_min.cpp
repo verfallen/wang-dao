@@ -6,12 +6,14 @@
  */
 
 bool visited[MaxVertexNum];
+LinkQueue Q;
 
 int d[MaxVertexNum];    //保存到u的最短路径长度
 int path[MaxVertexNum]; //最短路径从哪个顶点过来
 
 void BFS_MIN_Distance(ALGraph G, int u)
 {
+  InitQueue(Q);
   for (int i = 0; i < G.vexnum; i++)
   {
     d[i] = INT_MAX;
