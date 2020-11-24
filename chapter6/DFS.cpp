@@ -1,5 +1,8 @@
 #include "./Graph.h";
 
+/**
+ * 深度优先遍历
+ */
 //标记访问数组
 bool visited[MaxVertexNum];
 
