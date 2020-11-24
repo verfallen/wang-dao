@@ -25,7 +25,7 @@ void BFS_MIN_Distance(ALGraph G, int u)
   while (!Empty(Q))
   {
     DeQueue(Q, u);
-    for (int w = FirstNeighbor(G, u); w >= 0; w = NextNeighbor(G, v, w))
+    for (int w = FirstNeighbor(G, u); w >= 0; w = NextNeighbor(G, u, w))
     {
       if (!visited[w])
       {
