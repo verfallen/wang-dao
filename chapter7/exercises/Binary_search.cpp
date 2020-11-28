@@ -3,7 +3,7 @@
 int BinSearchRec(int num[], int key, int low, int high)
 {
   if (low > high)
-    return 0;
+    return -1;
   int mid = (low + high) / 2;
   if (key > num[mid])
     BinSearchRec(num, key, mid + 1, high);
