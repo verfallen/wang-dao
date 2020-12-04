@@ -33,11 +33,20 @@ void PrintList(SqlList &L)
   printf("\n");
 }
 
-//在第i个位置插入新元素e
+/**
+ * 在顺序表的第i个位置上插入元素e
+ * 思路：
+ * 1. 判断i是否符合要求
+ * 2. 判断表是否还有空间
+ * 3. 将i之后的元素全部右移
+ * 4. 将要插入的元素e放到位置 i上
+ * 5. 将表的长度+1
+ */
 bool ListInsert(SqlList &list, int i, ElementType e)
 {
   if (i < 1 || i > list.length + 1)
     return false;
+
   if (list.length >= list.MaxSize)
     return false;
   for (int j = list.length; j >= i; j--)
@@ -52,7 +61,7 @@ int LocateElem(SqlList &L, ElementType e)
 {
   for (int i = 0; i < L.length; i++)
     if (L.data[i] == e)
-      return i;
+      return i + 1;
 
   return -1;
 }
@@ -64,7 +73,13 @@ ElementType GetElem(SqlList &list, int i)
   return list.data[i - 1];
 }
 
-//删除表中第i个位置的元素
+/**删除表中第i个位置的元素
+ * 思路：
+ * 1. 判断i的位置是否合法
+ * 2. 将位置i的元素赋值给e
+ * 3. 将位置i之后的元素依次左移
+ * 4. 表长度-1
+ */
 bool ListDelete(SqlList &L, int i, ElementType &e)
 {
   if (i < 1 || i > L.length)
@@ -77,6 +92,7 @@ bool ListDelete(SqlList &L, int i, ElementType &e)
   L.length--;
   return true;
 }
+
 // 返回表的长度
 int Length(SqlList &l)
 {
