@@ -4,6 +4,11 @@
 
 using namespace std;
 
+/**
+ * 不带头结点的单链表
+ */
+
+//定义结点
 typedef struct LNode
 {
   int data;
@@ -14,13 +19,20 @@ bool InitList(LinkList &L);
 LinkList List_HeadInsert(LinkList &L);
 void PrintList(LinkList L);
 
+//初始化单链表
 bool InitList(LinkList &L)
 {
   L = NULL;
   return true;
 }
 
-//头插法，不带头结点
+/**
+ * 头插法，不带头结点
+ * 思路：
+ * 1. 每次读入一个元素，生成一个新结点s，将读取的数据存放到新结点的数据域
+ * 2. 将s的next 指针指向原来的表头
+ * 3. 将s作为新的表头
+ */
 LinkList List_HeadInsert(LinkList &L)
 {
   LNode *s;
@@ -42,7 +54,15 @@ LinkList List_HeadInsert(LinkList &L)
   }
   return L;
 }
-//尾插法，需要增加一个尾指针指向
+
+/**
+ * 尾插法(不带头结点)
+ * r指针指向链表的尾结点
+ * 1. 每次读入一个元素，生成一个新结点s，将读取的数据存放到新结点的数据域
+ * 2. 如果L为空表，将L直接指向s
+ * 3. 否则，将r的next指针指向s,修改尾指针
+ * 需要增加一个尾指针指向
+ */
 LinkList List_TailInsert(LinkList &L)
 {
   LNode *s, *r = L;
@@ -76,6 +96,7 @@ LinkList List_TailInsert(LinkList &L)
   return L;
 }
 
+//插入位置为i的元素
 LNode *GetElem(LinkList &L, int i)
 {
   if (i <= 0)
